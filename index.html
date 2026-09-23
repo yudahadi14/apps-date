@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mau Jalan-Jalan Sama Aku? ❤️</title>
+    <title>❤️</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome untuk ikon -->
@@ -156,11 +156,11 @@
                 </div>
                 
                 <h1 class="font-cursive text-5xl md:text-6xl text-romantic-200 mb-4 leading-relaxed">
-                    Hai Kamu... ❤️
+                    Hai Benarifa Ridha Azizah ❤️
                 </h1>
                 
                 <p class="text-lg md:text-xl text-rose-100/90 font-light mb-8 leading-relaxed">
-                    Aku mau nanya hal penting nih. Mau gak temenin aku nge-date dan bikin momen manis bareng-bareng?
+                    Apa kabar ? semoga sehat terus yaa ... Semangat Kerja nya Hari ini. 
                 </p>
 
                 <!-- Dynamic Cat / Cute GIF -->
@@ -213,7 +213,7 @@
                         </div>
                         <div>
                             <h3 class="font-bold text-gray-900">Pesta Pora</h3>
-                            <p class="text-xs text-gray-600">Makan-makan sepuasnya & rayakan hari dengan ceria!</p>
+                            <p class="text-xs text-gray-600">Nonton Pesta Pora yukkk</p>
                         </div>
                     </div>
 
@@ -237,7 +237,7 @@
                         </div>
                         <div>
                             <h3 class="font-bold text-gray-900">Ngopi Santai</h3>
-                            <p class="text-xs text-gray-600">Nongkrong di coffee shop sambil deep talk hangat.</p>
+                            <p class="text-xs text-gray-600">Ngopi dimana enaknnya yaa</p>
                         </div>
                     </div>
 
@@ -249,14 +249,14 @@
                         </div>
                         <div>
                             <h3 class="font-bold text-gray-900">Olahraga Bareng</h3>
-                            <p class="text-xs text-gray-600">Badminton, jogging, bowling atau gym seru berdua!</p>
+                            <p class="text-xs text-gray-600">Badminton, jogging, bowling atau gym ?!</p>
                         </div>
                     </div>
                 </div>
 
                 <button id="nextToStep3" disabled onclick="goToStep(3)" 
                         class="w-full bg-gradient-to-r from-romantic-500 to-rose-600 disabled:opacity-50 disabled:cursor-not-allowed hover:from-romantic-600 hover:to-rose-700 text-white font-semibold py-3 rounded-2xl shadow-lg transition text-center">
-                    Lanjut ke Detail Waktu <i class="fa-solid fa-arrow-right ml-2"></i>
+                    Pilih <i class="fa-solid fa-arrow-right ml-2"></i>
                 </button>
             </div>
         </div>
@@ -266,8 +266,8 @@
             <div class="glass-card p-6 md:p-8 rounded-3xl">
                 <div class="text-center mb-6">
                     <span class="text-xs font-semibold tracking-wider uppercase text-romantic-300 bg-romantic-500/20 px-3 py-1 rounded-full">Langkah 2 dari 2</span>
-                    <h2 class="text-2xl md:text-3xl font-bold mt-2 text-white">Detail Momen Spesial ⏰</h2>
-                    <p class="text-rose-200/80 text-sm mt-1">Tentukan kapan dan pakaian apa yang cocok!</p>
+                    <h2 class="text-2xl md:text-3xl font-bold mt-2 text-white"> ⏰</h2>
+                    <p class="text-rose-200/80 text-sm mt-1">Kapan ada waktu free nya nih ?</p>
                 </div>
 
                 <div class="space-y-4 mb-8">
@@ -279,7 +279,7 @@
                     </div>
 
                     <!-- Dresscode Selection -->
-                    <div>
+                    <div style="display:none;">
                         <label class="block text-xs font-semibold uppercase text-rose-200 mb-2">Dress Code</label>
                         <div class="grid grid-cols-2 gap-2">
                             <button type="button" onclick="setDressCode('Casual & Cozy 👕', this)" class="dress-btn bg-white/10 hover:bg-white/20 border border-white/10 text-white p-3 rounded-xl text-xs font-medium transition text-left">
@@ -671,22 +671,22 @@
         }
 
         // Check Previous Submission on Load
-        // window.addEventListener('DOMContentLoaded', () => {
-        //     const now = new Date();
-        //     now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-        //     const dateInput = document.getElementById('dateInput');
-        //     if (dateInput) dateInput.min = now.toISOString().slice(0, 16);
+         window.addEventListener('DOMContentLoaded', () => {
+             const now = new Date();
+             now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+             const dateInput = document.getElementById('dateInput');
+             if (dateInput) dateInput.min = now.toISOString().slice(0, 16);
 
-        //     const isSubmitted = localStorage.getItem('already_submitted');
-        //     const savedData = localStorage.getItem('saved_date_data');
+             const isSubmitted = localStorage.getItem('already_submitted');
+             const savedData = localStorage.getItem('saved_date_data');
 
-        //     if (isSubmitted === 'true' && savedData) {
-        //         const parsed = JSON.parse(savedData);
-        //         Object.assign(dateState, parsed);
-        //         renderTicketView(dateState);
-        //         showToast("Kamu sudah pernah memilih sebelumnya. Ini tiket kencanmu!", "info");
-        //     }
-        // });
+             if (isSubmitted === 'true' && savedData) {
+                 const parsed = JSON.parse(savedData);
+                 Object.assign(dateState, parsed);
+                 renderTicketView(dateState);
+                 showToast("Kamu sudah pernah memilih sebelumnya. Ini tiket kencanmu!", "info");
+             }
+         });
     </script>
 </body>
 </html>
