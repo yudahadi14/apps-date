@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mau Jalan-Jalan Sama Aku? ❤️</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti untuk efek selebrasi -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- html2canvas untuk download tiket/pass -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Google Fonts: Great Vibes & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        romantic: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            200: '#fecdd3',
+                            300: '#fda4af',
+                            400: '#fb7185',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            700: '#be123c',
+                            800: '#9f1239',
+                            900: '#881337',
+                        },
+                        velvet: '#4a0e17',
+                        gold: '#d4af37'
+                    },
+                    fontFamily: {
+                        cursive: ['"Great Vibes"', 'cursive'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #1f0508 0%, #4a0e17 50%, #2c000e 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .glass-card-light {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 25px 50px -12px rgba(225, 29, 72, 0.25);
+        }
+
+        .heart-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatUp 8s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.2) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Transition Smooth Slide */
+        .step-section {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .step-hidden-left {
+            opacity: 0;
+            transform: translateX(-50px) scale(0.95);
+            pointer-events: none;
+            position: absolute;
+            width: 100%;
+        }
+
+        .step-hidden-right {
+            opacity: 0;
+            transform: translateX(50px) scale(0.95);
+            pointer-events: none;
+            position: absolute;
+            width: 100%;
+        }
+
+        .step-active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            position: relative;
+            width: 100%;
+        }
+
+        /* Pulsing Glow Animation */
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(244, 63, 94, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(244, 63, 94, 0.8); }
+        }
+
+        .glow-btn {
+            animation: pulseGlow 2s infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #fb7185;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="text-white flex flex-col justify-between min-h-screen relative overflow-x-hidden selection:bg-romantic-500 selection:text-white">
+
+    <div id="heartContainer" class="fixed inset-0 pointer-events-none z-0"></div>
+
+    <!-- Main Container -->
+    <main class="container mx-auto px-4 py-8 flex-1 flex flex-col justify-center items-center relative z-10 max-w-2xl">
+        
+        <!-- ================= STEP 1: PROPOSAL ================= -->
+        <div id="step1" class="step-section step-active text-center">
+            <div class="glass-card p-8 md:p-12 rounded-3xl relative overflow-hidden">
+                <div class="inline-block p-4 rounded-full bg-romantic-500/20 mb-6 text-romantic-300 animate-bounce">
+                    <i class="fa-solid fa-heart-pulse text-5xl"></i>
+                </div>
+                
+                <h1 class="font-cursive text-5xl md:text-6xl text-romantic-200 mb-4 leading-relaxed">
+                    Hai Kamu... ❤️
+                </h1>
+                
+                <p class="text-lg md:text-xl text-rose-100/90 font-light mb-8 leading-relaxed">
+                    Aku mau nanya hal penting nih. Mau gak temenin aku nge-date dan bikin momen manis bareng-bareng?
+                </p>
+
+                <!-- Dynamic Cat / Cute GIF -->
+                <div class="mb-8 flex justify-center">
+                    <img id="proposalGif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWU0bmRhZDF2Ymk1dWxxeHFtbXltNDlmd2syejR0MGFza3AxcGlndyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L3X9GvpmP7YDRD8q56/giphy.gif" 
+                         alt="Cute Cat Asking" class="h-44 rounded-2xl shadow-lg border-2 border-rose-300/30 object-cover">
+                </div>
+
+                <div class="relative min-h-[80px] flex items-center justify-center gap-4 flex-wrap" id="buttonArea">
+                    <button id="yesBtn" onclick="handleYesClick()" 
+                            class="glow-btn bg-gradient-to-r from-romantic-500 to-rose-600 hover:from-romantic-600 hover:to-rose-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-heart"></i> Mau Banget!
+                    </button>
+
+                    <button id="noBtn" 
+                            class="bg-gray-700/60 hover:bg-gray-700 text-gray-200 font-medium py-3 px-8 rounded-full shadow transition-all duration-200 text-lg border border-white/10">
+                        Nggak Deh 😜
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= STEP 2: ACTIVITY SELECTION ================= -->
+        <div id="step2" class="step-section step-hidden-right">
+            <div class="glass-card p-6 md:p-8 rounded-3xl">
+                <div class="text-center mb-6">
+                    <span class="text-xs font-semibold tracking-wider uppercase text-romantic-300 bg-romantic-500/20 px-3 py-1 rounded-full">Langkah 1 dari 2</span>
+                    <h2 class="text-2xl md:text-3xl font-bold mt-2 text-white">Pilih Kegiatan Date KITA 🎨</h2>
+                    <p class="text-rose-200/80 text-sm mt-1">Kamu paling mau kita ngapain hari ini?</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                    <!-- Option 1: Nonton Film -->
+                    <div onclick="selectActivity('Nonton Film 🎬', this)" 
+                         class="activity-card glass-card-light text-gray-800 p-4 rounded-2xl cursor-pointer hover:scale-[1.02] transition border-2 border-transparent hover:border-romantic-500 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl shrink-0">
+                            🎬
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900">Nonton Film</h3>
+                            <p class="text-xs text-gray-600">Nonton bioskop atau marathon film favorit bareng.</p>
+                        </div>
+                    </div>
+
+                    <!-- Option 2: Pesta Pora -->
+                    <div onclick="selectActivity('Pesta Pora 🥳', this)" 
+                         class="activity-card glass-card-light text-gray-800 p-4 rounded-2xl cursor-pointer hover:scale-[1.02] transition border-2 border-transparent hover:border-romantic-500 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-2xl shrink-0">
+                            🥳
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900">Pesta Pora</h3>
+                            <p class="text-xs text-gray-600">Makan-makan sepuasnya & rayakan hari dengan ceria!</p>
+                        </div>
+                    </div>
+
+                    <!-- Option 3: Karaoke -->
+                    <div onclick="selectActivity('Karaoke 🎤', this)" 
+                         class="activity-card glass-card-light text-gray-800 p-4 rounded-2xl cursor-pointer hover:scale-[1.02] transition border-2 border-transparent hover:border-romantic-500 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-pink-100 text-pink-600 flex items-center justify-center text-2xl shrink-0">
+                            🎤
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900">Karaoke</h3>
+                            <p class="text-xs text-gray-600">Nyanyi lagu favorit berdua tanpa henti.</p>
+                        </div>
+                    </div>
+
+                    <!-- Option 4: Ngopi -->
+                    <div onclick="selectActivity('Ngopi / Coffee Date ☕', this)" 
+                         class="activity-card glass-card-light text-gray-800 p-4 rounded-2xl cursor-pointer hover:scale-[1.02] transition border-2 border-transparent hover:border-romantic-500 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-rose-100 text-romantic-600 flex items-center justify-center text-2xl shrink-0">
+                            ☕
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900">Ngopi Santai</h3>
+                            <p class="text-xs text-gray-600">Nongkrong di coffee shop sambil deep talk hangat.</p>
+                        </div>
+                    </div>
+
+                    <!-- Option 5: Olahraga -->
+                    <div onclick="selectActivity('Olahraga Bareng 🏸', this)" 
+                         class="activity-card glass-card-light text-gray-800 p-4 rounded-2xl cursor-pointer hover:scale-[1.02] transition border-2 border-transparent hover:border-romantic-500 flex items-center gap-4 md:col-span-2">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl shrink-0">
+                            🏸
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900">Olahraga Bareng</h3>
+                            <p class="text-xs text-gray-600">Badminton, jogging, bowling atau gym seru berdua!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="nextToStep3" disabled onclick="goToStep(3)" 
+                        class="w-full bg-gradient-to-r from-romantic-500 to-rose-600 disabled:opacity-50 disabled:cursor-not-allowed hover:from-romantic-600 hover:to-rose-700 text-white font-semibold py-3 rounded-2xl shadow-lg transition text-center">
+                    Lanjut ke Detail Waktu <i class="fa-solid fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= STEP 3: TIME & DRESS CODE ================= -->
+        <div id="step3" class="step-section step-hidden-right">
+            <div class="glass-card p-6 md:p-8 rounded-3xl">
+                <div class="text-center mb-6">
+                    <span class="text-xs font-semibold tracking-wider uppercase text-romantic-300 bg-romantic-500/20 px-3 py-1 rounded-full">Langkah 2 dari 2</span>
+                    <h2 class="text-2xl md:text-3xl font-bold mt-2 text-white">Detail Momen Spesial ⏰</h2>
+                    <p class="text-rose-200/80 text-sm mt-1">Tentukan kapan dan pakaian apa yang cocok!</p>
+                </div>
+
+                <div class="space-y-4 mb-8">
+                    <!-- Date & Time Input -->
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-rose-200 mb-1">Tanggal & Waktu Date</label>
+                        <input type="datetime-local" id="dateInput" 
+                               class="w-full bg-white/10 border border-white/20 rounded-2xl p-3 text-white focus:outline-none focus:border-romantic-400">
+                    </div>
+
+                    <!-- Dresscode Selection -->
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-rose-200 mb-2">Dress Code</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button type="button" onclick="setDressCode('Casual & Cozy 👕', this)" class="dress-btn bg-white/10 hover:bg-white/20 border border-white/10 text-white p-3 rounded-xl text-xs font-medium transition text-left">
+                                👕 Casual & Cozy
+                            </button>
+                            <button type="button" onclick="setDressCode('Sporty / Activewear 👟', this)" class="dress-btn bg-white/10 hover:bg-white/20 border border-white/10 text-white p-3 rounded-xl text-xs font-medium transition text-left">
+                                👟 Sporty & Active
+                            </button>
+                            <button type="button" onclick="setDressCode('Matching Outfits 👩‍❤️‍👨', this)" class="dress-btn bg-white/10 hover:bg-white/20 border border-white/10 text-white p-3 rounded-xl text-xs font-medium transition text-left">
+                                👩‍❤️‍👨 Baju Kembar/Matching
+                            </button>
+                            <button type="button" onclick="setDressCode('Bebas Bebas Aja 🤪', this)" class="dress-btn bg-white/10 hover:bg-white/20 border border-white/10 text-white p-3 rounded-xl text-xs font-medium transition text-left">
+                                🤪 Bebas Nyaman Aja
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Special Note -->
+                    <div>
+                        <label class="block text-xs font-semibold uppercase text-rose-200 mb-1">Pesan / Catatan Tambahan (Opsional)</label>
+                        <textarea id="customNote" rows="2" placeholder="Contoh: Jemput aku jam 6 sore ya! atau Siapin air minum 😄" 
+                                  class="w-full bg-white/10 border border-white/20 rounded-2xl p-3 text-white placeholder-rose-200/50 text-sm focus:outline-none focus:border-romantic-400"></textarea>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <button onclick="goToStep(2)" class="w-1/3 bg-white/10 hover:bg-white/20 text-white font-semibold py-3 rounded-2xl transition">
+                        Kembali
+                    </button>
+                    <button id="finishBtn" onclick="submitAndGenerateTicket()" 
+                            class="w-2/3 bg-gradient-to-r from-romantic-500 to-rose-600 hover:from-romantic-600 hover:to-rose-700 text-white font-semibold py-3 rounded-2xl shadow-lg transition text-center glow-btn flex items-center justify-center gap-2">
+                        <span id="btnText">Cetak Tiket Romantis! 🎟️</span>
+                        <i id="btnSpinner" class="fa-solid fa-spinner fa-spin hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= STEP 4: FINAL TICKET SUMMARY ================= -->
+        <div id="step4" class="step-section step-hidden-right">
+            <div class="flex flex-col items-center">
+                
+                <h2 class="font-cursive text-4xl text-romantic-200 mb-2 text-center">It's a Date! 🎉</h2>
+                <p class="text-rose-100/80 text-sm mb-6 text-center">Tiket resmi kencan kita sudah jadi & tersimpan!</p>
+
+                <!-- Official Pass Card (Target for HTML2Canvas) -->
+                <div id="ticketCard" class="glass-card-light text-gray-900 p-6 md:p-8 rounded-3xl w-full border-4 border-gold/40 shadow-2xl relative overflow-hidden mb-6">
+                    <!-- Ticket Decorative elements -->
+                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-romantic-500/10 rounded-full blur-2xl"></div>
+                    <div class="flex justify-between items-center border-b-2 border-dashed border-rose-200 pb-4 mb-4">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-heart text-romantic-600 text-2xl"></i>
+                            <span class="font-bold tracking-widest text-xs uppercase text-romantic-800">OFFICIAL DATE PASS</span>
+                        </div>
+                        <span class="text-xs font-mono bg-romantic-100 text-romantic-700 font-bold px-2.5 py-1 rounded-full">VIP ACCESS</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <span class="text-xs uppercase font-bold text-gray-400 tracking-wider">Aktivitas Utama</span>
+                            <p id="summaryActivity" class="text-lg font-bold text-gray-800">-</p>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <span class="text-xs uppercase font-bold text-gray-400 tracking-wider">Dress Code</span>
+                                <p id="summaryDress" class="text-sm font-semibold text-gray-800">-</p>
+                            </div>
+                            <div>
+                                <span class="text-xs uppercase font-bold text-gray-400 tracking-wider">Status Pass</span>
+                                <p class="text-sm font-semibold text-emerald-600">ACCEPTED ❤️</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="text-xs uppercase font-bold text-gray-400 tracking-wider">Waktu & Tanggal</span>
+                            <p id="summaryTime" class="text-sm font-semibold text-gray-800">-</p>
+                        </div>
+
+                        <div id="summaryNoteContainer" class="bg-rose-50/80 p-3 rounded-xl border border-rose-100">
+                            <span class="text-xs uppercase font-bold text-romantic-600 tracking-wider">Catatan Khusus</span>
+                            <p id="summaryNote" class="text-xs italic text-gray-700 mt-0.5">"-"</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-gray-100 flex justify-between items-center text-xs text-gray-500">
+                        <span>Disetujui dengan Penuh Cinta ❤️</span>
+                        <span class="font-mono" id="ticketPassId">PASS #LOVE-2026</span>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="w-full space-y-3">
+                    <button onclick="shareWhatsApp()" 
+                            class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-2xl shadow-lg transition flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Kirim Konfirmasi ke WhatsApp
+                    </button>
+                    
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="downloadTicketCard()" 
+                                class="bg-white/20 hover:bg-white/30 text-white font-medium py-3 px-4 rounded-2xl transition flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-download"></i> Simpan Gambar
+                        </button>
+                        <button onclick="copyInvitationText()" 
+                                class="bg-white/20 hover:bg-white/30 text-white font-medium py-3 px-4 rounded-2xl transition flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-copy"></i> Salin Teks
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Credit -->
+    <footer class="text-center py-4 text-xs text-rose-200/50 relative z-10">
+        Dibuat dengan ❤️ untuk Momen Spesial Kita
+    </footer>
+
+    <!-- Custom Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-gray-900 text-white px-5 py-3 rounded-2xl shadow-2xl transition-all duration-300 opacity-0 translate-y-10 z-50 flex items-center gap-2 text-sm border border-white/10">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span id="toastMessage">Pesan berhasil disalin!</span>
+    </div>
+
+    <!-- JavaScript App Logic -->
+    <script>
+        // ================= CONFIGURATION =================
+        // MASUKKAN URL GOOGLE APPS SCRIPT ANDA DI SINI
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyRNG15RroRjMFnMhsxnXNSJc7uH8R6h2nXnIJYvReDUvPzobciHUXGqO1G6vqgNfJ2/exec";
+
+        // Generate or fetch persistent userId
+        let userId = localStorage.getItem('user_romantic_id');
+        if (!userId) {
+            userId = 'user_' + Math.random().toString(36).substring(2, 11);
+            localStorage.setItem('user_romantic_id', userId);
+        }
+
+        // State Management
+        const dateState = {
+            activity: '',
+            dateTime: '',
+            dressCode: '',
+            note: ''
+        };
+
+        const gifs = [
+            "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWU0bmRhZDF2Ymk1dWxxeHFtbXltNDlmd2syejR0MGFza3AxcGlndyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L3X9GvpmP7YDRD8q56/giphy.gif",
+            "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3pjcndpZnltbmd4dGplbWVsaXBxd2NidzhzaTB1MGlqZmZzbnh6byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/c76IJLufpNwSULPk77/giphy.gif",
+            "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnQ2eXVreDZvZnpjcWRkMDF2NDllcjEybWExenI1eTh6ZHZ3MmN6biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/K6vh4815YA41i/giphy.gif"
+        ];
+
+        let noCount = 0;
+
+        // Floating Hearts Generator
+        function createHeart() {
+            const container = document.getElementById('heartContainer');
+            if (!container) return;
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            
+            const icons = ['❤️', '💖', '💕', '🌸', '✨'];
+            heart.innerText = icons[Math.floor(Math.random() * icons.length)];
+            
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
+            heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            
+            container.appendChild(heart);
+            setTimeout(() => heart.remove(), 8000);
+        }
+        setInterval(createHeart, 400);
+
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+
+        // Funny evasive NO button
+        function moveNoButton() {
+            noCount++;
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 100);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 100);
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = `${Math.max(20, x)}px`;
+            noBtn.style.top = `${Math.max(20, y)}px`;
+
+            if (noCount === 2) {
+                document.getElementById('proposalGif').src = gifs[1];
+            } else if (noCount >= 4) {
+                document.getElementById('proposalGif').src = gifs[2];
+            }
+
+            const currentScale = 1 + (noCount * 0.15);
+            yesBtn.style.transform = `scale(${Math.min(currentScale, 2)})`;
+        }
+
+        if (noBtn) {
+            noBtn.addEventListener('mouseover', moveNoButton);
+            noBtn.addEventListener('click', moveNoButton);
+        }
+
+        function handleYesClick() {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+
+            setTimeout(() => {
+                goToStep(2);
+            }, 500);
+        }
+
+        // Navigation Engine
+        let currentStep = 1;
+        function goToStep(stepNum) {
+            const currentEl = document.getElementById(`step${currentStep}`);
+            const nextEl = document.getElementById(`step${stepNum}`);
+
+            currentEl.classList.remove('step-active');
+            currentEl.classList.add(stepNum > currentStep ? 'step-hidden-left' : 'step-hidden-right');
+
+            setTimeout(() => {
+                nextEl.classList.remove('step-hidden-left', 'step-hidden-right');
+                nextEl.classList.add('step-active');
+                currentStep = stepNum;
+            }, 300);
+        }
+
+        // Selection Handlers
+        function selectActivity(activityName, element) {
+            dateState.activity = activityName;
+            document.querySelectorAll('.activity-card').forEach(c => {
+                c.classList.remove('border-romantic-500', 'ring-2', 'ring-romantic-500');
+            });
+            element.classList.add('border-romantic-500', 'ring-2', 'ring-romantic-500');
+            document.getElementById('nextToStep3').disabled = false;
+        }
+
+        function setDressCode(dressName, element) {
+            dateState.dressCode = dressName;
+            document.querySelectorAll('.dress-btn').forEach(b => {
+                b.classList.remove('bg-romantic-500/80', 'border-romantic-400');
+                b.classList.add('bg-white/10');
+            });
+            element.classList.remove('bg-white/10');
+            element.classList.add('bg-romantic-500/80', 'border-romantic-400');
+        }
+
+        // Display Ticket Card
+        function renderTicketView(data) {
+            document.getElementById('summaryActivity').innerText = data.activity;
+            document.getElementById('summaryTime').innerText = data.dateTime;
+            document.getElementById('summaryDress').innerText = data.dressCode || "Bebas & Nyaman";
+            document.getElementById('summaryNote').innerText = `"${data.note}"`;
+            document.getElementById('ticketPassId').innerText = `PASS #${userId.substring(5, 11).toUpperCase()}`;
+
+            goToStep(4);
+        }
+
+        // Submit to Google Sheets and Generate Ticket
+        async function submitAndGenerateTicket() {
+            const dateVal = document.getElementById('dateInput').value;
+            dateState.note = document.getElementById('customNote').value || "Gak sabar ketemu kamu!";
+
+            if (!dateVal) {
+                showToast("Pilih tanggal & waktunya dulu ya!", "error");
+                return;
+            }
+
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+            const formattedDate = new Date(dateVal).toLocaleDateString('id-ID', options);
+            dateState.dateTime = formattedDate;
+
+            // UI Loading state
+            const finishBtn = document.getElementById('finishBtn');
+            const btnText = document.getElementById('btnText');
+            const btnSpinner = document.getElementById('btnSpinner');
+            
+            finishBtn.disabled = true;
+            btnText.innerText = "Menyimpan Data...";
+            btnSpinner.classList.remove('hidden');
+
+            // Save payload to Google Sheets if SCRIPT_URL is provided
+            // if (SCRIPT_URL) {
+                try {
+                    const response = await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'cors',
+                        headers: {
+                            'Content-Type': 'text/plain'
+                        },
+                        body: JSON.stringify({
+                            activity: dateState.activity,
+                            datetime: dateState.dateTime,
+                            dresscode: dateState.dressCode || "Bebas & Nyaman",
+                            note: dateState.note,
+                            userId: userId
+                        })
+                    });
+
+                    const result = await response.json();
+                    console.log(result);
+                    if (result.result === 'error') {
+                        showToast(result.message, "error");
+                        finishBtn.disabled = false;
+                        btnText.innerText = "Cetak Tiket Romantis! 🎟️";
+                        btnSpinner.classList.add('hidden');
+                        return;
+                    }
+                } catch (error) {
+                    console.warn("Google Sheets endpoint error/unreachable, fallback local storage:", error);
+                }
+            // }
+
+            // Save in localStorage to prevent repeat submissions
+            localStorage.setItem('already_submitted', 'true');
+            localStorage.setItem('saved_date_data', JSON.stringify(dateState));
+
+            confetti({
+                particleCount: 150,
+                spread: 100,
+                origin: { y: 0.5 }
+            });
+
+            renderTicketView(dateState);
+        }
+
+        // Copy Text Function
+        function copyInvitationText() {
+            const text = `Yay! Aku udah setuju buat nge-date bareng kamu ❤️\n\n📌 *Detail Kencan Kita:*\n• Kegiatan: ${dateState.activity}\n• Waktu: ${dateState.dateTime}\n• Dress Code: ${dateState.dressCode}\n• Pesan: ${dateState.note}\n\nGak sabar! Sampai ketemu nanti! 🥰`;
+            
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            showToast("Teks konfirmasi berhasil disalin!", "success");
+        }
+
+        // WhatsApp Share Function
+        function shareWhatsApp() {
+            const text = `Yay! Aku udah setuju buat nge-date bareng kamu ❤️%0A%0A📌 *Detail Kencan Kita:*%0A• Kegiatan: ${dateState.activity}%0A• Waktu: ${dateState.dateTime}%0A• Dress Code: ${dateState.dressCode}%0A• Pesan: ${dateState.note}%0A%0AGak sabar! Sampai ketemu nanti! 🥰`;
+            window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+        }
+
+        // Download Ticket as PNG Image
+        function downloadTicketCard() {
+            const card = document.getElementById('ticketCard');
+            showToast("Sedang menyiapkan gambar tiket...", "info");
+
+            html2canvas(card, {
+                backgroundColor: null,
+                scale: 2
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `Date-Pass-${userId.substring(5, 11)}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                showToast("Tiket berhasil di-download!", "success");
+            });
+        }
+
+        // Toast Notification Helper
+        function showToast(msg, type = "success") {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMessage.innerText = msg;
+            if (type === "error") {
+                toastIcon.className = "fa-solid fa-circle-xmark text-rose-400";
+            } else if (type === "info") {
+                toastIcon.className = "fa-solid fa-circle-info text-amber-400";
+            } else {
+                toastIcon.className = "fa-solid fa-circle-check text-emerald-400";
+            }
+
+            toast.classList.remove('opacity-0', 'translate-y-10');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-10');
+            }, 3000);
+        }
+
+        // Check Previous Submission on Load
+        // window.addEventListener('DOMContentLoaded', () => {
+        //     const now = new Date();
+        //     now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        //     const dateInput = document.getElementById('dateInput');
+        //     if (dateInput) dateInput.min = now.toISOString().slice(0, 16);
+
+        //     const isSubmitted = localStorage.getItem('already_submitted');
+        //     const savedData = localStorage.getItem('saved_date_data');
+
+        //     if (isSubmitted === 'true' && savedData) {
+        //         const parsed = JSON.parse(savedData);
+        //         Object.assign(dateState, parsed);
+        //         renderTicketView(dateState);
+        //         showToast("Kamu sudah pernah memilih sebelumnya. Ini tiket kencanmu!", "info");
+        //     }
+        // });
+    </script>
+</body>
+</html>
