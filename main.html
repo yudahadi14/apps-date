@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cerita Kita - Pantai & Gelembung Cinta</title>
+  <title>From Someone</title>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Poppins:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -119,7 +119,7 @@
     <div id="lockCard" class="glass-card p-8 rounded-3xl max-w-sm w-full text-center shadow-2xl border border-white/60">
       <div class="w-16 h-16 bg-pink-100 text-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl shadow-inner">🔒</div>
       <h2 class="text-2xl font-bold font-serif-title text-slate-800 mb-2">Halaman Terkunci</h2>
-      <p class="text-xs text-slate-500 mb-6 leading-relaxed">Masukkan kata sandi rahasia untuk membuka kisah perjalanan cerita kita.</p>
+      <p class="text-xs text-slate-500 mb-6 leading-relaxed">Masukkan kata sandi yaitu tanggal lahir kamu.</p>
       
       <form id="passwordForm" onsubmit="unlockStory(event)" class="space-y-4">
         <div class="relative">
@@ -292,34 +292,54 @@
     // ----------------------------------------------------
     // CONFIGURATION & STORIES DATA
     // ----------------------------------------------------
-    const SECRET_PASSWORD = "1234"; // Ganti password di sini
+    const SECRET_PASSWORD = "16022000"; // Ganti password di sini
     const REFF_START_TIME = 39; // Detik dimulainya Reff Raim Laode - Dunia Yang Nanti
 
     let storyPages = [
       {
-        title: "Pertemuan Pertama",
-        content: "Hari itu langit cerah, di mana takdir dengan lembut mempertemukan kita tanpa sengaja. Senyum sederhana itu awal dari segalanya.",
-        date: "Awal Cerita Kita ✨"
+        title: "1",
+        content: "Hai Benarifa Ridha Azizah ❤️, Kamu apa kabar ? Semoga sehat selalu yah. Semangat kerja nya hari ini. Aku mau cerita nih tapi aku bingung mulai dari mana hehehe",
+        date: "2"
       },
       {
-        title: "Perbincangan Hangat",
-        content: "Dari obrolan singkat yang canggung, berubah menjadi obrolan panjang hingga larut malam. Aku menyadari ada kenyamanan yang tak pernah kurasakan sebelumnya.",
-        date: "Momen Favorit 💬"
+        title: "",
+        content: "Berawal dari project RSUD kita di pertemukan lagi, kemudian rutin chatan setiap hari tapi gak setiap hari juga sih , kemudian setiap seminggu sekali ketemuan , ada banyak cerita yg kamu bagikan",
+        date: ""
       },
       {
-        title: "Tawa & Suka Duka",
-        content: "Melewati hari-hari dengan tawa sederhana, saling menopang saat lelah, dan belajar memahami satu sama lain. Setiap detiknya sangat berharga.",
-        date: "Langkah Bersama 👣"
+        title: "3",
+        content: "Sampai kedekatan ini membuat aku kagum akan sosok dirimu yg mandiri , pinter , cantik , bekerja keras , walaupun kehidupan nya tidak mudah untuk di lalui sendiri tapi gak ada kata menyerah dalam hidupnya. Entah kenapa allah mempertemukan kembali, aku jadi orang lebih baik dan mengenal tuhan semenjak deket sama kamu.",
+        date: ""
       },
       {
-        title: "Janji Kecil Kita",
-        content: "Bahwa apapun yang terjadi di masa depan, kita akan tetap menggenggam tangan yang sama dan berjalan beriringan.",
-        date: "Janji Hati 🤝"
+        title: "4",
+        content: "Sampai akhirnya sepertinya aku jatuh ke lubang yg paling dalam. Walaupun aku sadar gak mungkin juga kamu merasakan hal yg sama. Kemudian beberapa bulan menghilang tidak ada kabar aku pun coba melupakan perasaan ini, sambil berdoa di setiap sujud menyebut namamu.",
+        date: ""
       },
       {
-        title: "Untuk Hari Ini & Nanti",
-        content: "Terima kasih sudah menjadi alasan terbaikku untuk tersenyum setiap hari. Cerita kita masih panjang, dan aku ingin menulis setiap halamannya bersamamu.",
-        date: "Selamanya ❤️"
+        title: "5",
+        content: "Sampai ada 3 kali bertemu di mimpi. Entah kebetulan aja komunikasi itu terjalin lagi walaupun tak sesering dulu dan di pertemukan lagi rasanya senang bisa melihat wajahmu kembali dsn ternyata sikapnya masih sama tidak ada yg berubah.",
+        date: ""
+      },
+      {
+        title: "6",
+        content: "Mungkin kebetulan juga tiba-tiba gabung di tempat fitness yg sama. Aku gatau perasaan ini salah atau benar mengingat status aku yg sudah ber istri dan punya anak. Hubungan aku dan istriku juga tidak baik-baik aja, sampai ingin berpisah karena ada perbedaan yg gak bisa disatuin.",
+        date: ""
+      },
+      {
+        title: "7",
+        content: "Jika bisa memilih sekarang aku ingin berpisah walaupun nantinya gak sama kamu. Tapi pasti juga gak mungkin kan kita bisa bersama hehehe. Aku gak pernah jatuh cinta sedalam ini kayanya hehehe",
+        date: ""
+      },
+      {
+        title: "8",
+        content: "Terima kasih ya Ridha udah hadir dan mengajari banyak hal yg gabisa aku rasakan. Terima kasih udah mengenalkanku kembali dengan Tuhan. Semoga kamu dapat seseorang yg bisa buat kamu bahagia , bisa menemani kesendirianmu , bisa mewujudkan impian kamu, biar gak cape kerja lagi. Terima kasih Benarifa Ridha Azizah ❤️",
+        date: ""
+      },
+      {
+        title: "9",
+        content: "Aku cuma ingin cerita apa yg ada di hati beberapa bulan belakangan ini hehehe. Tadinya mau cerita langsung tapi kayanya gak ada waktu untuk menceritakannya.Terima kasih udah mau membaca ya ❤️",
+        date: ""
       }
     ];
 
@@ -352,7 +372,7 @@
       const err = document.getElementById('passwordError');
       const lockCard = document.getElementById('lockCard');
 
-      if (input.value === SECRET_PASSWORD || input.value.toLowerCase() === "love") {
+      if (input.value === SECRET_PASSWORD || input.value.toLowerCase() === "14031995") {
         isUnlocked = true;
         document.getElementById('lockOverlay').classList.add('opacity-0');
         setTimeout(() => {
