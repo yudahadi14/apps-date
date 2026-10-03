@@ -553,9 +553,6 @@
                     console.log(result);
                     if (result.result === 'error') {
                         showToast(result.message, "error");
-                        finishBtn.disabled = false;
-                        btnText.innerText = "Cetak Tiket Romantis! 🎟️";
-                        btnSpinner.classList.add('hidden');
                         return;
                     }
                 } catch (error) {
