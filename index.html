@@ -403,7 +403,7 @@
     // ----------------------------------------------------
     // PASSWORD SYSTEM
     // ----------------------------------------------------
-    async function unlockStory(event) {
+    function unlockStory(event) {
       event.preventDefault();
       const input = document.getElementById('passwordInput');
       const err = document.getElementById('passwordError');
@@ -525,7 +525,7 @@
       }, 1000);
     }
 
-    function triggerFlowerSurprise() {
+    async function triggerFlowerSurprise() {
       // Play Raim Laode music right at Chorus
       const audio = document.getElementById('bgMusic');
       try {
