@@ -324,7 +324,7 @@
   <!-- HIDDEN AUDIO PLAYER FOR RAIM LAODE - DUNIA YANG NANTI -->
   <!-- Note: Audio automatically seeks to Ref/Chorus timestamp ~39s upon trigger -->
   <audio id="bgMusic" preload="auto">
-    <source src="https://raw.githubusercontent.com/azisdev/media-assets/main/Raim_Laode_-_Dunia_Yang_Nanti.mp3" type="audio/mpeg">
+    <source src="raim.mp3" type="audio/mpeg">
     <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/7b/0a/7b0a3bf6f8090eb6ffbf1d0c40e0ec3d.mp3" type="audio/mpeg">
   </audio>
 
@@ -426,6 +426,8 @@
 
       // Spawn falling petals
       createFallingPetals();
+      const audio = document.getElementById('bgMusic');
+      audio.play().catch(e => console.log('Audio autoplay prevented:', e));
 
       
       // Tap heart effect listener
