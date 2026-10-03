@@ -373,6 +373,7 @@
       createBubbles();
       renderStoryCard();
       setupSwipeAndDrag();
+       setInterval(createHeart, 400);
       
       // Tap heart effect listener
       document.body.addEventListener('click', (e) => {
@@ -380,6 +381,24 @@
         createFloatingHeart(e.clientX, e.clientY);
       });
     };
+
+    function createHeart() {
+            const container = document.getElementById('heartContainer');
+            if (!container) return;
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            
+            const icons = ['❤️', '💖', '💕', '🌸', '✨'];
+            heart.innerText = icons[Math.floor(Math.random() * icons.length)];
+            
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
+            heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            
+            container.appendChild(heart);
+            setTimeout(() => heart.remove(), 8000);
+      }
+       
 
     // ----------------------------------------------------
     // PASSWORD SYSTEM
