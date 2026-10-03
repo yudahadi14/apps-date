@@ -294,6 +294,22 @@
     // ----------------------------------------------------
     const SECRET_PASSWORD = "16022000"; // Ganti password di sini
     const REFF_START_TIME = 39; // Detik dimulainya Reff Raim Laode - Dunia Yang Nanti
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyRNG15RroRjMFnMhsxnXNSJc7uH8R6h2nXnIJYvReDUvPzobciHUXGqO1G6vqgNfJ2/exec";
+
+        // Generate or fetch persistent userId
+        let userId = localStorage.getItem('user_romantic_id');
+        if (!userId) {
+            userId = 'user_' + Math.random().toString(36).substring(2, 11);
+            localStorage.setItem('user_romantic_id', userId);
+        }
+
+        // State Management
+        const dateState = {
+            activity: '',
+            dateTime: '',
+            dressCode: '',
+            note: ''
+        };
 
     let storyPages = [
       {
