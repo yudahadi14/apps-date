@@ -390,8 +390,9 @@
 
       if (input.value === SECRET_PASSWORD || input.value.toLowerCase() === "14031995") {
         const isSubmitted = localStorage.getItem('already_submitted');
+        const savedData = localStorage.getItem('saved_date_data');
 
-        if (isSubmitted === 'true') {
+        if (isSubmitted === 'true' && savedData) {
                  showToast("Terima Kasih Sudah Membaca :)");
         }else{
           isUnlocked = true;
