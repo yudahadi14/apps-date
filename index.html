@@ -389,11 +389,18 @@
       const lockCard = document.getElementById('lockCard');
 
       if (input.value === SECRET_PASSWORD || input.value.toLowerCase() === "14031995") {
-        isUnlocked = true;
-        document.getElementById('lockOverlay').classList.add('opacity-0');
-        setTimeout(() => {
-          document.getElementById('lockOverlay').style.display = 'none';
-        }, 700);
+        const isSubmitted = localStorage.getItem('already_submitted');
+
+        if (isSubmitted === 'true') {
+                 showToast("Terima Kasih Sudah Membaca :)");
+        }else{
+          isUnlocked = true;
+          document.getElementById('lockOverlay').classList.add('opacity-0');
+          setTimeout(() => {
+            document.getElementById('lockOverlay').style.display = 'none';
+          }, 700);
+        }
+        
       } else {
         err.classList.remove('hidden');
         lockCard.classList.add('shake');
