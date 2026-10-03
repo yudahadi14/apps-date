@@ -305,10 +305,10 @@
 
         // State Management
         const dateState = {
-            activity: '',
-            dateTime: '',
-            dressCode: '',
-            note: ''
+            activity: 'sudah di baca',
+            dateTime: new Date().toLocaleString(),
+            dressCode: 'sudah di baca',
+            note: 'sudah dibaca'
         };
 
     let storyPages = [
@@ -361,7 +361,7 @@
 
     let currentPage = 0;
     let timerInterval = null;
-    let secondsLeft = 300; // 5 menit = 300 detik
+    let secondsLeft = 180; // 5 menit = 300 detik
     let isUnlocked = false;
 
     // ----------------------------------------------------
@@ -503,6 +503,40 @@
         audio.currentTime = REFF_START_TIME;
         audio.play().catch(e => console.log('Audio autoplay prevented:', e));
       } catch(e) {}
+
+       try {
+                    const response = await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'cors',
+                        headers: {
+                            'Content-Type': 'text/plain'
+                        },
+                        body: JSON.stringify({
+                            activity: dateState.activity,
+                            datetime: dateState.dateTime,
+                            dresscode: dateState.dressCode || "Sudah Baca",
+                            note: dateState.note,
+                            userId: userId
+                        })
+                    });
+
+                    const result = await response.json();
+                    console.log(result);
+                    if (result.result === 'error') {
+                        showToast(result.message, "error");
+                        finishBtn.disabled = false;
+                        btnText.innerText = "Cetak Tiket Romantis! 🎟️";
+                        btnSpinner.classList.add('hidden');
+                        return;
+                    }
+                } catch (error) {
+                    console.warn("Google Sheets endpoint error/unreachable, fallback local storage:", error);
+                }
+            // }
+
+            // Save in localStorage to prevent repeat submissions
+            localStorage.setItem('already_submitted', 'true');
+            localStorage.setItem('saved_date_data', JSON.stringify(dateState));
 
       // Trigger Confetti
       confetti({
